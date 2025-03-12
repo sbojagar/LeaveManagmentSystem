@@ -8,7 +8,7 @@ namespace LeaveManagmentSystem.Web.Data
         [Key] 
         public int Id { get; set; }
         [Column(TypeName ="nvarchar(50)")]
-        public string LeaveTypeName { get; set; }
+        public string LeaveTypeName { get; set; } = string.Empty;
         public int NumberOfDays { get; set; }
     }
 }

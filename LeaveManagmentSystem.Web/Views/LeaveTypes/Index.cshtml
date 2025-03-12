@@ -1,9 +1,12 @@
-﻿@model IEnumerable<LeaveManagmentSystem.Web.Data.LeaveType>
+﻿@using LeaveManagmentSystem.Web.Models.LeaveTypes
+@* @model IEnumerable<IndexVM> *@
+@* @model IEnumerable<LeaveManagmentSystem.Web.Data.LeaveType> *@
+@model IEnumerable<LeaveTypeReadOnlyVM>
 
 @{
     ViewData["Title"] = "Index";
 }
-
+@* //Scaffolded controller  *@
 <h1>Index</h1>
 
 <p>

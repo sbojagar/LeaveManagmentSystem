@@ -1,9 +1,9 @@
-﻿@model LeaveManagmentSystem.Web.Data.LeaveType
+﻿@model LeaveTypeReadOnlyVM //Can use modelname directly as its imported in _ViewImports.cshtml
 
 @{
     ViewData["Title"] = "Leave Type Details";
 }
-
+@* //Scaffolded controller  *@
 <h1>Leave Type Details for @Model.LeaveTypeName</h1>
 
 <div>
@@ -25,6 +25,7 @@
     </dl>
 </div>
 <div>
+    @* anchor tags *@
     <a asp-action="Edit" class="btn btn-dark" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index" class="btn btn-primary">Back to List</a>
-</div>
+</div> 
