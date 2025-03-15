@@ -1,14 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LeaveManagmentSystem.Web.Models.LeaveTypes
 {
-    public class LeaveTypeReadOnlyVM
+    public class LeaveTypeEditVM :BaseLeaveTypeVM
     {
-        public int Id { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [Required]
+        [Length(4, 150, ErrorMessage = "You have violated the length requirements")]
         public string Name { get; set; } = string.Empty;
 
+        [Required]
+        [Range(1, 90)]
         [Display(Name = "Maximum Allocation of Days")]
         public int NumberOfDays { get; set; }
     }

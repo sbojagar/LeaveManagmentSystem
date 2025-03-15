@@ -1,4 +1,5 @@
 using LeaveManagmentSystem.Web.Data;
+using LeaveManagmentSystem.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -14,6 +15,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.AddScoped<ILeaveTypesService, LeaveTypesService>(); //Added ServiceInjection
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());// Added Automapper to dependency Injections
 
