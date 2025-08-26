@@ -21,6 +21,10 @@ builder.Services.AddScoped<ILeaveTypesService, LeaveTypesService>(); //Added Ser
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());// Added Automapper to dependency Injections
 
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -48,3 +52,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
