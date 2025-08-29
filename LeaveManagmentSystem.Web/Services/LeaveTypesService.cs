@@ -4,17 +4,18 @@ using LeaveManagmentSystem.Web.Data;
 using LeaveManagmentSystem.Web.Models.LeaveTypes;
 using Microsoft.EntityFrameworkCore;
 
-namespace LeaveManagmentSystem.Web.Services; // added colen and removed namespace braces.
+namespace LeaveManagmentSystem.Web.Services; // added semicolen and removed namespace braces.
 
-public class LeaveTypesService(ApplicationDbContext context, IMapper mapper) : ILeaveTypesService
+//public class LeaveTypesService(ApplicationDbContext context, IMapper mapper) : ILeaveTypesService
+public class LeaveTypesService(ApplicationDbContext _context, IMapper _mapper) : ILeaveTypesService
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
+    //private readonly ApplicationDbContext _context;
+    //private readonly IMapper _mapper;
 
-    //public LeaveTypesService(ApplicationDbContext context,IMapper mapper) //Refactored in Class Initialization
+    //public LeaveTypesService(ApplicationDbContext context, IMapper mapper) //Refactored in Class Initialization
     //{
-    //    this.context = context;
-    //    this.mapper = mapper;                
+    //    this._context = context;
+    //    this._mapper = mapper;
     //}
 
     public async Task<List<LeaveTypeReadOnlyVM>> GetAll()
@@ -59,7 +60,7 @@ public class LeaveTypesService(ApplicationDbContext context, IMapper mapper) : I
 
     public async Task Create(LeaveTypeCreateVM model)
     {
-        var leaveType = _mapper.Map<LeaveType>(model.LeaveTypeName);
+        var leaveType = _mapper.Map<LeaveType>(model);
         _context.Add(leaveType);
         await _context.SaveChangesAsync();
 

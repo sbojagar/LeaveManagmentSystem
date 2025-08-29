@@ -13,12 +13,12 @@ using LeaveManagmentSystem.Web.Services;
 
 namespace LeaveManagmentSystem.Web.Controllers
 {
-    public class LeaveTypesController (ILeaveTypesService leaveTypesService): Controller
+    public class LeaveTypesController (ILeaveTypesService _leaveTypesService): Controller
     {
         //private readonly ApplicationDbContext _context;
         //private readonly IMapper _mapper;
         private const string NameExistsValidationMessage = "This leave type already exists in the database";
-        private readonly ILeaveTypesService _leaveTypesService = leaveTypesService;
+       // private readonly ILeaveTypesService _leaveTypesService = leaveTypesService;
 
         //public LeaveTypesController(ApplicationDbContext context,IMapper mapper)// IMapper injection is for Automapper 
         //{
@@ -37,7 +37,7 @@ namespace LeaveManagmentSystem.Web.Controllers
             ////    NumberOfDays = m.NumberOfDays
             ////});
             //var viewDataVM = _mapper.Map<List<LeaveTypeReadOnlyVM>>(data);
-            var viewData = _leaveTypesService.GetAll();
+            var viewData = await _leaveTypesService.GetAll();
             return View(viewData);
             //return View(await _context.LeaveTypes.ToListAsync());
         }
@@ -83,14 +83,14 @@ namespace LeaveManagmentSystem.Web.Controllers
         public async Task<IActionResult> Create(LeaveTypeCreateVM leaveTypeCreate)//Overposting by supplying ID parameter ->Create([Bind("Id,LeaveTypeName,NumberOfDays")] LeaveType leaveType)
         {
             // Adding custom validation and model state error
-            if (await _leaveTypesService.CheckIfLeaveTypeNameExists(leaveTypeCreate.LeaveTypeName))
+            if (await _leaveTypesService.CheckIfLeaveTypeNameExists(leaveTypeCreate.Name))
             {
-                ModelState.AddModelError(nameof(leaveTypeCreate.LeaveTypeName), "This leave type already exists in the database");
+                ModelState.AddModelError(nameof(leaveTypeCreate.Name), "This leave type already exists in the database");
             }
             if (ModelState.IsValid)
             {
                 //var leaveType = _mapper.Map<LeaveType>(leaveTypeCreate.LeaveTypeName);
-                //_context.Add(leaveType);
+                //_context.Add(leaveType); 
                 //await _context.SaveChangesAsync();
                 await _leaveTypesService.Create(leaveTypeCreate);
                 return RedirectToAction(nameof(Index));

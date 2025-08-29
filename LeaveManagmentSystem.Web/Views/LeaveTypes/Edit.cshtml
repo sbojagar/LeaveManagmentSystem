@@ -1,5 +1,5 @@
-﻿@model LeaveManagmentSystem.Web.Data.LeaveType
-
+﻿@* @model LeaveManagmentSystem.Web.Data.LeaveType *@
+@model LeaveTypeEditVM
 @{
     ViewData["Title"] = "Edit Leave Type";
 }
@@ -12,11 +12,11 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+           @*  <input type="hidden" asp-for="LeaveTypeName" /> *@
             <div class="form-group">
-                <label asp-for="LeaveTypeName" class="control-label"></label>
-                <input asp-for="LeaveTypeName" class="form-control" />
-                <span asp-validation-for="LeaveTypeName" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <br/>
             <div class="form-group">
