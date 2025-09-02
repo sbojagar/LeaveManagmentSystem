@@ -1,0 +1,9 @@
+﻿DB Migration commands->
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Update-Database
+
+
+dotnet tool install -- global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet ef migrations add MigrationName
+dotnet ef database update
