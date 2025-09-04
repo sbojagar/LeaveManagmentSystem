@@ -7,3 +7,52 @@ dotnet tool install -- global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef migrations add MigrationName
 dotnet ef database update
+
+
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Your_password123" -p 1433:1433 --name sql1 -d mcr.microsoft.com/mssql/server:2022-latest
+
+SECURITY SECTION ->
+Here are short, crisp bulleted points to remember about security requirements for a leave management system application:
+
+- **User Self-Onboarding**: Employees should be able to register themselves on the system.
+- **Email Verification**: Upon registration, users must verify their identity via a confirmation email.
+- **User Login**: Registered and verified users must be able to log in anytime.
+- **Password Reset**: Support password reset via email for forgotten passwords.
+- **Access Restrictions**: Certain features and areas must be accessible only to authenticated users.
+- **Role-Based Access Control**: Features and sections should be restricted based on user roles.
+- **Security Enforcement**: No anonymous unrestricted browsing; enforce login and access control.
+- **Continuous Improvement**: Security requirements may evolve; the system should adapt and possibly exceed minimum requirements.
+- **Next Steps**: Understand authentication and authorization concepts to implement these controls effectively.
+
+These guidelines help ensure secure user management, access control, and protection of sensitive leave management application features.
+
+[5](https://www.linkedin.com/pulse/key-features-effective-online-leave-management-system-sid-kumar-blbxc)
+
+
+
+AUTHENTICATION/AUTHARIZATION
+
+ASP.NET Core Identity.
+An API that supports user interface (UI) login functionality, user registration, and more.
+Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
+Supports external login providers like Google, Microsoft Account, Facebook, and Twitter.
+When creating a new ASP.NET Core web application, you can choose to include authentication.
+In the Authentication dialog, you can select Individual User Accounts to include ASP.NET Core Identity.
+This provides a ready-to-use authentication system with pre-built UI pages for login, registration, and password management.
+
+The authentication middleware is configured in the Program.cs file by calling app.UseAuthentication() and app.UseAuthorization().
+
+[Authorize] is used to restrict access to controllers or actions to authenticated users.
+
+[AllowAnonymous] is used to allow access to specific controllers or actions without authentication, even if the controller or action is decorated with [Authorize].]
+
+
+You can customize the Identity system by modifying the default UI, adding new fields to the user model, or changing the database schema.
+ASP.NET Core Identity uses Entity Framework Core to store user information in a database.
+You can configure Identity options, such as password complexity requirements, lockout settings, and user validation rules, in the Program.cs file.
+To add ASP.NET Core Identity to an existing project, you can install the necessary NuGet packages and configure services in Program.cs.
+Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
